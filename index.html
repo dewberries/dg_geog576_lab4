@@ -21,7 +21,7 @@
             <script src="https://js.arcgis.com/4.26/"></script>
 
             <script>
-                require([ "esri/config", "esri/Map", "esri/views/MapView" , "esri/widgets/Locate", "esri/widgets/Search"], (esriConfig, Map, MapView, Locate, Search) => {
+                require([ "esri/config", "esri/Map", "esri/views/MapView" , "esri/widgets/Locate", "esri/widgets/Search", "esri/layers/FeatureLayer"], (esriConfig, Map, MapView, Locate, Search, FeatureLayer) => {
 
                     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurH86ushiKgIwvC2wUlTd8F37mnU6k2QLAYLvKFFXY-Svp4GXLaLK6wmU1pfw4HOZLw5wMM4ZTIYcQlQdbX2hUYzr1nTKbOH2WxbQhA9W0cg2c0dPR38_Nj1IAa7SL0SafHR9WYZIrtspWEzWRlfpen2vhiswXg_evBLbiQQolTMP7EA2wOnZLYXM8CKGJ7FOd2SsmxonwBdZtiwvChdqVzAhyrX11apebT2maTrE83I6AT1_H55nR2U5";
 
@@ -49,7 +49,15 @@
                         view: view
                     });
 
-                    view.ui.add(searchWidget, "top-left");
+                    view.ui.add(searchWidget, "top-right");
+
+                    // Create featurelayer from feature service 
+                    const layer = new FeatureLayer({ 
+                    // URL to the service 
+                        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/survey123_2739f7a99df0411f830aa7860d84acf5_results/FeatureServer/0"
+                    });
+
+                    map.add(layer);
 
                 });
             </script>
